@@ -57,9 +57,10 @@ export const Input = styled.input`
 `;
 
 export const Header = styled.header`
+  width: 100%;
   top: 0;
   left: 0;
-  position: sticky;
+  /* position: sticky; */
   z-index: 1100;
   display: flex;
   justify-content: center;
