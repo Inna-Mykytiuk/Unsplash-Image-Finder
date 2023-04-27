@@ -13,7 +13,7 @@ export const ImageGallery = () => {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [totalHits, setTotalHits] = useState(0);
+  const [totalPages, settotalPages] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [activeImage, setActiveImage] = useState(null);
 
@@ -22,9 +22,9 @@ export const ImageGallery = () => {
 
     setIsLoading(true);
     fetchImages(query, page)
-      .then(({ hits, totalHits }) => {
-        if (!totalHits) {
-          console.log(totalHits, hits);
+      .then(({ hits, totalPages }) => {
+        if (!totalPages) {
+          console.log(totalPages, hits);
           toast.error('There are no images for your request');
           return;
         }
@@ -38,7 +38,7 @@ export const ImageGallery = () => {
         );
 
         setImages(prevImages => [...prevImages, ...results]);
-        setTotalHits(totalHits);
+        settotalPages(totalPages);
       })
       .catch(error => {
         toast.error('There was an error fetching images');
@@ -51,7 +51,7 @@ export const ImageGallery = () => {
     setQuery(query);
     setImages([]);
     setPage(1);
-    setTotalHits(0);
+    settotalPages(0);
   };
 
   const onLoadMoreButton = () => {
@@ -72,7 +72,7 @@ export const ImageGallery = () => {
     <>
       <Searchbar onSubmit={submitHandler} />
       <Gallery images={images} openModal={onImageClick} />
-      {totalHits > images.length && !isLoading && (
+      {totalPages > images.length && !isLoading && (
         <Button onLoadMoreButton={onLoadMoreButton} />
       )}
       {isLoading && <Dna wrapperStyle={{ margin: '0 auto' }} />}
