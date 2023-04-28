@@ -24,7 +24,7 @@ export const ModalImg = styled.img`
 
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const ModalText = styled.p`
@@ -34,7 +34,7 @@ export const ModalText = styled.p`
   left: 0;
   padding: 8px 16px;
   margin: 0;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 1.33;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.6);
