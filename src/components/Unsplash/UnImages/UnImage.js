@@ -1,21 +1,26 @@
 // import { Image } from './UnImage.styled';
 
-// export const UnImage = ({ data }) => {
+// export const UnImage = ({ tags, smallImage, largeImage, openModal }) => {
 //   return (
-//     <div>
-//       <a href={data.urls.regular} target="_blank" rel="noreferrer">
-//         <Image src={data.urls.small} alt={data.alt_description} />
-//       </a>
+//     <div onClick={() => openModal({ largeUrl: largeImage, targetAlt: tags })}>
+//       <Image
+//         src={smallImage}
+//         alt={tags}
+//         loading="lazy"
+//         width={480}
+//         height={260}
+//       />
 //     </div>
 //   );
 // };
+
 import { Image } from './UnImage.styled';
 
-export const UnImage = ({ tags, smallImage }) => {
+export const UnImage = ({ tags, largeImage, openModal }) => {
   return (
-    <div>
+    <div onClick={() => openModal({ largeUrl: largeImage, tags })}>
       <Image
-        src={smallImage}
+        src={largeImage}
         alt={tags}
         loading="lazy"
         width={480}

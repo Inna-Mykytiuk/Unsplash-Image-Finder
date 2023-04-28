@@ -9,7 +9,7 @@ import { Button } from '../UnButton/UnButton';
 import { Searchbar } from '../UnSearch/UnSearchbar';
 import { Images } from '../UnImages/UnImages';
 import { Dna } from 'react-loader-spinner';
-// import { Modal } from './Modal/Modal';
+import { Modal } from '../../Modal/Modal';
 
 import { Title } from 'components/App.styled';
 
@@ -19,8 +19,8 @@ export const UnsplashGallery = () => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
-  // const [showModal, setShowModal] = useState(false);
-  // const [activeImage, setActiveImage] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [activeImage, setActiveImage] = useState(null);
 
   useEffect(() => {
     if (!query) return;
@@ -64,26 +64,29 @@ export const UnsplashGallery = () => {
     setPage(prevPage => prevPage + 1);
   };
 
-  // const onImageClick = activeImage => {
-  //   setActiveImage(activeImage);
-  //   setShowModal(true);
-  // };
+  const onImageClick = activeImage => {
+    setActiveImage(activeImage);
+    setShowModal(true);
+  };
 
-  // const closeModal = () => {
-  //   setShowModal(false);
-  //   setActiveImage(null);
-  // };
+  const closeModal = () => {
+    setShowModal(false);
+    setActiveImage(null);
+  };
 
   return (
     <>
       <GalleryStyled>
         <Title>Unsplash Gallery</Title>
         <Searchbar onSubmit={submitHandler} />
-        <Images images={images} />
+        <Images images={images} openModal={onImageClick} />
         {totalPages > images.length && !isLoading && (
           <Button onLoadMoreButton={onLoadMoreButton} />
         )}
         {isLoading && <Dna wrapperStyle={{ margin: '0 auto' }} />}
+        {showModal && activeImage && (
+          <Modal image={activeImage} onClose={closeModal}></Modal>
+        )}
         <ToastContainer />
       </GalleryStyled>
     </>
