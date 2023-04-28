@@ -11,6 +11,8 @@ import { Images } from '../UnImages/UnImages';
 import { Dna } from 'react-loader-spinner';
 // import { Modal } from './Modal/Modal';
 
+import { Title } from 'components/App.styled';
+
 export const UnsplashGallery = () => {
   const [images, setImages] = useState([]);
   const [query, setQuery] = useState('');
@@ -75,7 +77,7 @@ export const UnsplashGallery = () => {
   return (
     <>
       <GalleryStyled>
-        <h1>Unsplash Gallery</h1>
+        <Title>Unsplash Gallery</Title>
         <Searchbar onSubmit={submitHandler} />
         <Images images={images} />
         {totalPages > images.length && !isLoading && (
